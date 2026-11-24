@@ -367,7 +367,7 @@ export function wrapSheetGeometry({ rTop = 1.3, rBottom = 0.12, height = 1.65, a
   const p = new THREE.Vector3()
   for (let i = 0; i < pos.count; i++) {
     p.fromBufferAttribute(pos, i)
-    const v = p.y / height
+    const v = Math.min(1, Math.max(0, p.y / height)) // float noise at the base can dip below 0
     const ang = Math.atan2(p.x, p.z)
     // crinkles grow towards the open top edge; pleats run up the cone like hand folds
     const crinkle = (Math.sin(ang * 9 + ph) * 0.5 + Math.sin(ang * 23 + ph * 2) * 0.25 + Math.sin(ang * 41 + v * 6 + ph) * 0.12) * 0.035 * v * v
