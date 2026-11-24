@@ -30,3 +30,14 @@ From the Portfolio folder the launch configs `petale` (dev) and `petale-prod` (p
 - **Performance:** each canvas compiles during the loader / before it scrolls in, pauses when off-screen, and adapts its pixel ratio to the frame rate. Phones and low-memory devices get fewer flowers, fewer petals and no sheen. The customiser and garden scenes are code-split and mount only near the viewport.
 - **Accessibility:** `prefers-reduced-motion` disables Lenis, character reveals, auto-rotation and drifting petals; without WebGL each 3D scene falls back to photography.
 - Cart and wishlist persist in `localStorage`, re-validated against the catalogue on load (prices are always recomputed, never trusted from storage).
+
+## Deploy
+
+Live at https://petale-atelier.netlify.app (Netlify site `petale-atelier`, id `46389aea-7575-4152-b1c1-c54a8fd2dfea`; `.netlify/state.json` links it). Source: https://github.com/FaisalAhamed10/petale.
+
+```
+npm run build
+npx netlify-cli@17.38.1 deploy --prod --dir dist
+```
+
+The two console errors on the live site come from Netlify's injected free-plan badge script, which the CSP blocks on purpose; the site itself logs none.
